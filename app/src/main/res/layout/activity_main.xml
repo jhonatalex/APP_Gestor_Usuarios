@@ -23,79 +23,89 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#B5AFAF">
 
         <ListView
             android:id="@+id/lista"
-            android:layout_width="354dp"
-            android:layout_height="405dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginLeft="28dp"
-            android:layout_marginTop="32dp"
+            android:layout_width="380dp"
+            android:layout_height="418dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="12dp"
+            android:background="#E4DEDE"
+            android:choiceMode="multipleChoiceModal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_numero" />
 
         <Button
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="292dp"
-            android:layout_marginLeft="292dp"
-            android:layout_marginTop="188dp"
-            android:onClick="agregar"
+            android:id="@+id/bt_agregar"
+            style="@android:style/Widget.DeviceDefault.Button.Inset"
+            android:layout_width="135dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="260dp"
+            android:layout_marginLeft="260dp"
+            android:layout_marginTop="120dp"
             android:text="Agregar"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/bt_actualizar"
+            style="@android:style/Widget.DeviceDefault.Button.Inset"
+            android:layout_width="135dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="260dp"
+            android:layout_marginLeft="260dp"
+            android:layout_marginTop="176dp"
+            android:text="Actualizar"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/titulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="84dp"
+            android:layout_marginStart="68dp"
+            android:layout_marginLeft="68dp"
+            android:layout_marginTop="68dp"
             android:text="Agregue un nuevo cliente"
-            android:textSize="18sp"
+            android:textColor="#000000"
+            android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/txt_numero"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="206dp"
+            android:layout_height="50dp"
             android:layout_marginStart="40dp"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="8dp"
+            android:background="#E4DEDE"
             android:ems="10"
-            android:hint="Ingrese número telefónico"
+            android:gravity="center_horizontal|center_vertical"
+            android:hint="Ingrese Nro telefónico"
             android:inputType="textPersonName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_nombre" />
 
         <EditText
             android:id="@+id/txt_nombre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="206dp"
+            android:layout_height="50dp"
             android:layout_marginStart="40dp"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="20dp"
+            android:background="#E4DEDE"
             android:ems="10"
+            android:gravity="center_horizontal|center_vertical"
             android:hint="Ingrese nombre"
             android:inputType="textPersonName"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/contenedor1"
-            android:layout_width="349dp"
-            android:layout_height="177dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="152dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toBottomOf="@+id/titulo" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
