@@ -138,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         final AlertDialog alerta=builder.create();
+
         alerta.show();
 
 
