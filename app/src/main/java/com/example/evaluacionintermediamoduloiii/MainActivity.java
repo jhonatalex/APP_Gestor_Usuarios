@@ -1,15 +1,13 @@
 package com.example.evaluacionintermediamoduloiii;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
+import android.view.LayoutInflater;
 import android.view.View;
 
 import android.view.Menu;
@@ -34,7 +32,9 @@ public class MainActivity extends AppCompatActivity {
     private Button agregar;
     private Button actualizar;
     Integer posicion;
+    int index=0;
 
+    Integer j;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Listacontactos.add("Nombre: "+ nombre.getText().toString()+" Telf: "+telefono.getText().toString());
                     nombre.setText("");
+                    telefono.setText("");
                     adaptador.notifyDataSetChanged();
                     Toast.makeText(MainActivity.this, "Contacto Añadido", Toast.LENGTH_LONG).show();
                 }
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this,"Rellene los campos" + Listacontactos.get(posicion).toString() , Toast.LENGTH_SHORT).show();
 
                             }else{
-                                 Listacontactos.set(posicion, varnombre +"  "+vartelefono );
+                                 Listacontactos.set(posicion, "Nombre: "+varnombre +"  Telf.: "+vartelefono );
                                  adaptador.notifyDataSetChanged();
                                  }
 
@@ -114,34 +115,13 @@ public class MainActivity extends AppCompatActivity {
         ListViewclientes.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int i, long id) {
-                final int posicion = i;
-
-
-                AlertDialog.Builder dialogo1 = new AlertDialog.Builder((view.getContext()));
-
-                dialogo1.setTitle("Importante");
-                dialogo1.setMessage("¿ Esta seguro que desea Eliimnar ?");
-                dialogo1.setCancelable(false);
-                dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogo1, int id) {
-                        Listacontactos.remove(posicion);
-                        adaptador.notifyDataSetChanged();
-                        Toast.makeText(MainActivity.this, "Datos Borrados Correctamente !!!", Toast.LENGTH_SHORT).show();
-                    }
-
-                });
-
-
-                dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogo1, int id) {
-                    }
-                });
-
-                dialogo1.show();
-
+                index=i;;
+                MostarDialogopersonalizado();
 
                 return false;
+
             }
+
         });
 
 
@@ -149,11 +129,45 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void MostarDialogopersonalizado() {
+        final int  j=index;
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        LayoutInflater pop= getLayoutInflater();
+        View view=pop.inflate(R.layout.fragment_blank,null);
+        builder.setView(view);
 
 
+        final AlertDialog alerta=builder.create();
+        alerta.show();
 
 
+        Button cancel=view.findViewById(R.id.canx);
+        Button confirm=view.findViewById(R.id.conx);
 
+
+        confirm.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View vista) {
+
+                Toast.makeText(MainActivity.this, "DATOS BORRADOS !!!", Toast.LENGTH_SHORT).show();
+                Listacontactos.remove(j);
+                adaptador.notifyDataSetChanged();
+                alerta.dismiss();
+
+            }
+        });
+
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alerta.dismiss();
+            }
+        });
+
+
+    }
 
 
     @Override

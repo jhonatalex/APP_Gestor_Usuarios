@@ -41,13 +41,13 @@ public class LoginActivity extends AppCompatActivity {
         String nombre= username.getText().toString();
         String contras= password.getText().toString();
 
-        //if (nombre.equals("usuario@correo.com") && contras.equals("123456")){
+        if (nombre.equals("usuario@correo.com") && contras.equals("123")){
             Intent entrar = new Intent(this, MainActivity.class);
             startActivity(entrar);
 
-     //   } else {
+        }else {
             Toast.makeText(this,"Datos ingresados incorrectos",Toast.LENGTH_LONG).show();
-       // }
+        }
 
 
     }
