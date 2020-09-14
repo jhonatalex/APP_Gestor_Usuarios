@@ -53,8 +53,8 @@ public class AdaptadorContactos extends ArrayAdapter<Contacto> {
         {Imageimagen.setImageResource(R.mipmap.mujer); }
 
         Textnombre.setText(p1.nombre +" "+ p1.getApellido());
-        Texttelefono.setText(String.valueOf(p1.getEdad()));
-        Textedad.setText(p1.getFecha());
+        Texttelefono.setText("Edad: "+String.valueOf(p1.getEdad()));
+        Textedad.setText("Fecha Nac.: "+ p1.getFecha());
 
 
         return view;

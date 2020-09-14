@@ -1,6 +1,7 @@
 package com.example.evaluacionintermediamoduloiii;
 
 
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,23 +11,28 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.DialogFragment;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-public class MainActivity2 extends AppCompatActivity {
-
+public class MainActivity2 extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
 
 
     AdaptadorContactos Myadaptador;
@@ -44,6 +50,7 @@ public class MainActivity2 extends AppCompatActivity {
     public RadioButton sexof;
     Integer pos;
     int index=0;
+    private java.text.DateFormat DateFormat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +140,24 @@ public class MainActivity2 extends AppCompatActivity {
         ListaContenedor.setAdapter(Myadaptador);
 
 
+        // FECHA
+
+        fecha1.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+
+                DialogFragment Date = new DatePickerFragment();
+                Date.show(getSupportFragmentManager(),"Date Picker");
+                return false;
+            }
+        });
+
+
+
+
+
+
+
     }
 
 
@@ -180,6 +205,81 @@ public class MainActivity2 extends AppCompatActivity {
 
 
     }
+
+
+
+
+
+    @Override
+    public void onDateSet(DatePicker view, int ano, int mes, int dia) {
+
+        //String FechaActual= DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
+
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.YEAR,ano);
+        c.set(Calendar.MONTH,mes);
+        c.set(Calendar.DAY_OF_MONTH,dia);
+
+        fecha1.setText(dia+"/"+mes+"/"+ano);
+
+
+
+        Calendar c1 = Calendar.getInstance();
+        int ano_actual=c1.get(Calendar.YEAR);
+        int mes_actual=c1.get(Calendar.MONTH);
+        int dia_actual= c1.get(Calendar.DAY_OF_MONTH);
+
+
+
+        //LLAMO AL METODO CALCULAR
+        edad1.setText( String.valueOf(calcularEdad(ano_actual,mes_actual,dia_actual,ano,mes,dia)));
+/*
+
+*/
+
+
+
+    }
+
+    public int calcularEdad(int ano_actual, int mes_actual, int dia_actual, int ano_nacimiento, int mes_nacimiento, int dia_nacimiento) {
+        int Edad, meses, Dias = 0;
+
+
+        if(mes_nacimiento>mes_actual){
+            if(dia_nacimiento>dia_actual){
+                Edad=ano_actual-ano_nacimiento-1;
+                meses=12-(mes_nacimiento-mes_actual)-1;
+                Dias=(30-(dia_nacimiento-dia_actual))-1;
+            }
+            else if((30-(dia_nacimiento-dia_actual)-1>30)) {
+                Edad = ano_actual - ano_nacimiento - 1;
+                meses = 12 - (mes_nacimiento - mes_actual);
+                Dias = (30 - (dia_nacimiento - dia_actual)) - 30;
+            }else{
+                Edad = ano_actual - ano_nacimiento - 1;
+                meses = (12 - (mes_nacimiento - mes_actual))-1;
+                Dias = (30 - (dia_nacimiento - dia_actual)) - 1;
+            }
+
+        }else if(dia_nacimiento>dia_actual) {
+            Edad=ano_actual-ano_nacimiento;
+            meses=(mes_actual-mes_nacimiento)-1;
+            Dias = 30 - (dia_nacimiento - dia_actual);
+        }else{
+            Edad=ano_actual-ano_nacimiento;
+            meses=mes_actual-mes_nacimiento;
+            Dias = dia_actual-dia_nacimiento;
+
+
+        }
+
+
+
+        return Edad;
+
+    }
+
+
 
 
 
