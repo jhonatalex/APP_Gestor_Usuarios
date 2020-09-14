@@ -45,9 +45,9 @@ public class LoginActivity extends AppCompatActivity {
             Intent entrar = new Intent(this, MainActivity.class);
             startActivity(entrar);
 
-      }else {
+         }else {
             Toast.makeText(this,"Datos ingresados incorrectos",Toast.LENGTH_LONG).show();
-       }
+        }
 
 
     }
