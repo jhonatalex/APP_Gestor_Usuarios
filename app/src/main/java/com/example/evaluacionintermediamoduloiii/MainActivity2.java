@@ -296,13 +296,13 @@ public class MainActivity2 extends AppCompatActivity implements DatePickerDialog
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
+        if (id == R.id.programa2) {
             Intent entrar = new Intent(this, MainActivity2.class);
             startActivity(entrar);
 
             return true;
         }
-        if (id == R.id.action_settings2) {
+        if (id == R.id.programa1) {
             Intent entrar = new Intent(this, MainActivity.class);
             startActivity(entrar);
 
